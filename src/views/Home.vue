@@ -1,5 +1,5 @@
 <template
-  ><el-container style="height: 800px; border: 1px solid #eee">
+  ><el-container style="height: 100%">
     <el-aside width="250px">
       <el-menu
         class="el-menu-vertical-demo"
@@ -38,7 +38,7 @@
         </el-submenu>
       </el-menu>
     </el-aside>
-    <el-main>
+    <el-main style="overflow: auto">
       <div :is="currentView"></div>
     </el-main>
   </el-container>
@@ -67,6 +67,11 @@ export default {
     selectItem(index) {
       this.currentView = index;
       console.log(index);
+    }
+  },
+  computed: {
+    getHeight() {
+      return window.innerHeight - 25;
     }
   }
 };

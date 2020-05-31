@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 600px;margin: 200px auto auto;">
+  <div style="width: 600px;margin: 0 auto;top: 30%;position: relative">
     <el-form
       ref="loginForm"
       :model="form"

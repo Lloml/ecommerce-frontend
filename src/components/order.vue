@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="tableData" style="width: 100%">
+  <el-table :max-height="750" :data="tableData" style="width: 100%">
     <el-table-column prop="id" label="编号" width="180"> </el-table-column>
     <el-table-column prop="orderSn" label="订单编号" width="300">
     </el-table-column>

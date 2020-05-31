@@ -26,7 +26,6 @@ axios.interceptors.request.use(
       text: "拼命加载中...",
       background: "rgba(255, 255, 255, .6)"
     });
-    config.headers["origin"] = "http://localhost:8080/login";
     return config;
   },
   err => {
@@ -55,10 +54,8 @@ axios.interceptors.response.use(
           break;
         //无权限
         case 403:
-          router.replace({
-            name: "noAuth",
-            query: { redirect: router.currentRoute.fullPath }
-          });
+          Message.error("您没有该权限");
+          break;
       }
     }
     loading.close();
@@ -78,16 +75,12 @@ axios.interceptors.response.use(
 
         //无权限
         case 403:
-          router.replace({
-            name: "noAuth",
-            query: { redirect: router.currentRoute.fullPath }
-          });
+          Message.error("您没有该权限");
           break;
       }
     }
     loading.close();
     console.log(error);
-    Message.error(String(error));
     return Promise.reject(error);
   }
 );
