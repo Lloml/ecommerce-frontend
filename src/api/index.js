@@ -17,8 +17,8 @@ axios.defaults.baseURL = "http://127.0.0.1:8089";
 axios.interceptors.request.use(
   config => {
     console.time("ajax请求耗时");
-    if (store.state.token !== "") {
-      config.headers.Authorization = "Bearer " + store.getters.getToken;
+    if (localStorage.getItem("token") && localStorage.getItem("token") !== "") {
+      config.headers.Authorization = "Bearer " + localStorage.getItem("token");
     }
 
     loading = Loading.service({

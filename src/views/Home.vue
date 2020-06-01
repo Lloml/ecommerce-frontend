@@ -38,9 +38,19 @@
         </el-submenu>
       </el-menu>
     </el-aside>
-    <el-main style="overflow: auto">
-      <div :is="currentView"></div>
-    </el-main>
+    <el-container>
+      <el-header>
+        <div
+          style="position: absolute; top: 15px; right: 20px;"
+          @click="loginOut"
+        >
+          <i class="el-icon-user"></i>{{ getUserNickName }}
+        </div></el-header
+      >
+      <el-main style="overflow: auto">
+        <div :is="currentView"></div>
+      </el-main>
+    </el-container>
   </el-container>
 </template>
 
@@ -67,11 +77,31 @@ export default {
     selectItem(index) {
       this.currentView = index;
       console.log(index);
+    },
+    loginOut() {
+      this.$confirm("是否登出", "登出", {
+        confirmButtonText: "是",
+        cancelButtonText: "否"
+      }).then(
+        () => {
+          localStorage.removeItem("token");
+          localStorage.removeItem("userInfo");
+          this.$router.go(0);
+        },
+        e => e
+      );
     }
   },
   computed: {
     getHeight() {
       return window.innerHeight - 25;
+    },
+    getUserNickName() {
+      if (localStorage.getItem("userInfo")) {
+        return JSON.parse(localStorage.getItem("userInfo"))["nickName"];
+      } else {
+        return "";
+      }
     }
   }
 };

@@ -16,8 +16,9 @@
         <el-input v-model="form.password" show-password></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')"
-          >登录</el-button
+        <el-button type="primary" @click="submitForm">登录</el-button>
+        <el-link type="primary" style="margin-left: 300px" href="/register"
+          >没有账户？点此处注册</el-link
         >
       </el-form-item>
     </el-form>
@@ -39,6 +40,8 @@ export default {
   },
   methods: {
     submitForm() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("userInfo");
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           axios
@@ -49,6 +52,11 @@ export default {
             .then(
               res => {
                 this.$store.commit("setToken", res.data["jwtToken"]);
+                localStorage.setItem("token", res.data["jwtToken"]);
+                localStorage.setItem(
+                  "userInfo",
+                  JSON.stringify(res.data["data"])
+                );
                 if (res.data.code === 200) {
                   this.$router.replace("/");
                   this.$message.success(res.data.message);
