@@ -15,8 +15,6 @@
             <span>商品</span>
           </template>
           <el-menu-item index="product">商品列表</el-menu-item>
-          <el-menu-item index="1-2" disabled>添加商品</el-menu-item>
-          <el-menu-item index="1-3" disabled>商品分类</el-menu-item>
         </el-submenu>
         <el-submenu index="2">
           <template slot="title">
@@ -24,8 +22,6 @@
             <span>订单</span>
           </template>
           <el-menu-item index="order">订单列表</el-menu-item>
-          <el-menu-item index="2-2" disabled>退货申请处理</el-menu-item>
-          <el-menu-item index="2-3" disabled>退货原因处理</el-menu-item>
         </el-submenu>
         <el-submenu index="3">
           <template slot="title">
